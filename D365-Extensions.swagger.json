@@ -1,0 +1,211 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "D365 - Extensions",
+      "description": "",
+      "version": "1.0"
+    },
+    "host": ".crm6.dynamics.com",
+    "basePath": "/api/data/v9.0",
+    "schemes": [
+      "https"
+    ],
+    "consumes": [],
+    "produces": [],
+    "paths": {
+      "/EntityDefinitions": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": "default",
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "summary": "Get entities",
+          "description": "Retrieve metadata of all entities",
+          "operationId": "Get-Meta-Entities",
+          "parameters": [
+            {
+              "name": "$select",
+              "in": "query",
+              "required": false,
+              "type": "string",
+              "default": "LogicalName,SchemaName,PrimaryNameAttribute,PrimaryIdAttribute,ObjectTypeCode",
+              "x-ms-visibility": "internal"
+            }
+          ]
+        }
+      },
+      "/Merge": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": "default",
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "summary": "Merge records",
+          "operationId": "Merge-Record",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": false,
+              "type": "string",
+              "default": "application-json",
+              "x-ms-visibility": "internal"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": false,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Target": {
+                    "type": "object",
+                    "properties": {},
+                    "description": "Target"
+                  },
+                  "Subordinate": {
+                    "type": "object",
+                    "properties": {},
+                    "description": "Subordinate"
+                  },
+                  "UpdateContent": {
+                    "type": "object",
+                    "properties": {},
+                    "description": "UpdateContent"
+                  },
+                  "PerformParentingChecks": {
+                    "type": "boolean",
+                    "description": "PerformParentingChecks"
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Merge two records"
+        }
+      },
+      "/queues({Queue})/Microsoft.Dynamics.CRM.AddToQueue": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": "default",
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "summary": "Add to queue",
+          "description": "Add a record to queue",
+          "operationId": "Add-To-Queue",
+          "parameters": [
+            {
+              "name": "Queue",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": false,
+              "type": "string",
+              "default": "application/json",
+              "x-ms-visibility": "internal"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": false,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Target": {
+                    "type": "object",
+                    "properties": {},
+                    "description": "Target"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "/systemusers({SystemUser})/Microsoft.Dynamics.CRM.AddUserToRecordTeam": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": "default",
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "summary": "Add user to record team",
+          "description": "Add a user to access team",
+          "operationId": "Add-User-To-Record-Team",
+          "parameters": [
+            {
+              "name": "SystemUser",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": false,
+              "type": "string",
+              "default": "application/json",
+              "x-ms-visibility": "internal"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": false,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Record": {
+                    "type": "object",
+                    "properties": {},
+                    "description": "Record"
+                  },
+                  "TeamTemplate": {
+                    "type": "object",
+                    "properties": {},
+                    "description": "TeamTemplate"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "definitions": {},
+    "parameters": {},
+    "responses": {},
+    "securityDefinitions": {
+      "oauth2_auth": {
+        "type": "oauth2",
+        "flow": "accessCode",
+        "authorizationUrl": "https://login.windows.net/common/oauth2/authorize",
+        "tokenUrl": "https://login.windows.net/common/oauth2/authorize",
+        "scopes": {}
+      }
+    },
+    "security": [
+      {
+        "oauth2_auth": []
+      }
+    ],
+    "tags": []
+  }
