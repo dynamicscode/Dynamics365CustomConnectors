@@ -1,0 +1,341 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "D365 - Online Management",
+    "description": "",
+    "version": "1.0"
+  },
+  "host": "admin.services.crm6.dynamics.com",
+  "basePath": "/api/v1.2",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/Instances": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "string",
+                    "description": "Id"
+                  },
+                  "UniqueName": {
+                    "type": "string",
+                    "description": "UniqueName"
+                  },
+                  "Version": {
+                    "type": "string",
+                    "description": "Version"
+                  },
+                  "ApplicationUrl": {
+                    "type": "string",
+                    "description": "ApplicationUrl"
+                  },
+                  "ApiUrl": {
+                    "type": "string",
+                    "description": "ApiUrl"
+                  },
+                  "State": {
+                    "type": "string",
+                    "description": "State"
+                  },
+                  "InitialUserPrincipalName": {
+                    "type": "string",
+                    "description": "InitialUserPrincipalName"
+                  },
+                  "StateIsSupportedForDelete": {
+                    "type": "boolean",
+                    "description": "StateIsSupportedForDelete"
+                  },
+                  "AdminMode": {
+                    "type": "boolean",
+                    "description": "AdminMode"
+                  },
+                  "Type": {
+                    "type": "string",
+                    "description": "Type"
+                  },
+                  "Purpose": {
+                    "type": "string",
+                    "description": "Purpose"
+                  },
+                  "FriendlyName": {
+                    "type": "string",
+                    "description": "FriendlyName"
+                  },
+                  "DomainName": {
+                    "type": "string",
+                    "description": "DomainName"
+                  },
+                  "BaseLanguage": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "BaseLanguage"
+                  },
+                  "InitialUserEmail": {
+                    "type": "string",
+                    "description": "InitialUserEmail"
+                  },
+                  "SecurityGroupId": {
+                    "type": "string",
+                    "description": "SecurityGroupId"
+                  },
+                  "AdditionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "EffectiveUsedStorageMB": {
+                        "type": "string",
+                        "description": "EffectiveUsedStorageMB"
+                      },
+                      "CreatedOnUTC": {
+                        "type": "string",
+                        "description": "CreatedOnUTC"
+                      },
+                      "ExpirationDateUTC": {
+                        "type": "string",
+                        "description": "ExpirationDateUTC"
+                      },
+                      "AdminMode": {
+                        "type": "string",
+                        "description": "AdminMode"
+                      },
+                      "AdminModeCustomMessage": {
+                        "type": "string",
+                        "description": "AdminModeCustomMessage"
+                      },
+                      "NotifyEmails": {
+                        "type": "string",
+                        "description": "NotifyEmails"
+                      }
+                    },
+                    "description": "AdditionalProperties"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get instances",
+        "operationId": "Get-Instances",
+        "parameters": []
+      }
+    },
+    "/InstanceBackups": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "summary": "Get instance backups",
+        "operationId": "Get-Instance-Backups",
+        "parameters": [
+          {
+            "name": "instanceId",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Instance",
+            "x-ms-dynamic-values": {
+              "operationId": "Get-Instances",
+              "value-path": "Id",
+              "value-title": "FriendlyName"
+            }
+          }
+        ]
+      },
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "summary": "Backup instance",
+        "operationId": "Backup-Instance",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "InstanceId": {
+                  "type": "string",
+                  "description": "Instance",
+                  "title": "",
+                  "x-ms-visibility": "",
+                  "x-ms-dynamic-values": {
+                    "operationId": "Get-Instances",
+                    "value-path": "Id",
+                    "value-title": "FriendlyName"
+                  }
+                },
+                "Label": {
+                  "type": "string",
+                  "description": "Label"
+                },
+                "IsAzureBackup": {
+                  "type": "boolean",
+                  "description": "IsAzureBackup",
+                  "title": "",
+                  "x-ms-visibility": "internal",
+                  "enum": [
+                    "",
+                    "true",
+                    "false"
+                  ],
+                  "default": "false"
+                },
+                "AzureStorageInformation": {
+                  "type": "object",
+                  "properties": {
+                    "ContainerName": {
+                      "type": "string",
+                      "description": "ContainerName",
+                      "title": "",
+                      "x-ms-visibility": "internal"
+                    },
+                    "StorageAccountName": {
+                      "type": "string",
+                      "description": "StorageAccountName",
+                      "title": "",
+                      "x-ms-visibility": "internal"
+                    },
+                    "StorageAccountKey": {
+                      "type": "string",
+                      "description": "StorageAccountKey",
+                      "title": "",
+                      "x-ms-visibility": "internal"
+                    }
+                  },
+                  "description": "AzureStorageInformation"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/Operation/{operationId}": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "summary": "Get operation status",
+        "operationId": "Get-Operation-Status",
+        "parameters": [
+          {
+            "name": "operationId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Operation ID"
+          }
+        ]
+      }
+    },
+    "/Instances/{targetInstanceId}/Restore": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "summary": "Restore instance",
+        "operationId": "Restore-Instance",
+        "parameters": [
+          {
+            "name": "targetInstanceId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "Get-Instances",
+              "value-path": "Id",
+              "value-title": "FriendlyName"
+            },
+            "x-ms-summary": "Target Instance"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "SourceInstanceId": {
+                  "type": "string",
+                  "description": "Source Instance",
+                  "title": "",
+                  "x-ms-visibility": "",
+                  "x-ms-dynamic-values": {
+                    "operationId": "Get-Instances",
+                    "value-path": "Id",
+                    "value-title": "FriendlyName"
+                  }
+                },
+                "Label": {
+                  "type": "string",
+                  "description": "Label"
+                },
+                "CreatedOn": {
+                  "type": "string",
+                  "description": "Created On",
+                  "title": "",
+                  "x-ms-visibility": ""
+                },
+                "InstanceBackupId": {
+                  "type": "string",
+                  "description": "Instance Backup Id",
+                  "title": "",
+                  "x-ms-visibility": ""
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "oauth2_auth": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://login.windows.net/common/oauth2/authorize",
+      "tokenUrl": "https://login.windows.net/common/oauth2/authorize",
+      "scopes": {}
+    }
+  },
+  "security": [
+    {
+      "oauth2_auth": []
+    }
+  ],
+  "tags": []
+}
