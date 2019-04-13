@@ -125,7 +125,8 @@
         },
         "summary": "Get instances",
         "operationId": "Get-Instances",
-        "parameters": []
+        "parameters": [],
+        "description": "Retrieves all Customer Engagement instances in your Office 365 tenant."
       }
     },
     "/InstanceBackups": {
@@ -134,7 +135,52 @@
           "default": {
             "description": "default",
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "string",
+                    "description": "Id"
+                  },
+                  "Status": {
+                    "type": "string",
+                    "description": "Status"
+                  },
+                  "CreatedBy": {
+                    "type": "string",
+                    "description": "CreatedBy"
+                  },
+                  "CreatedOn": {
+                    "type": "string",
+                    "description": "CreatedOn"
+                  },
+                  "ExpiresOn": {
+                    "type": "string",
+                    "description": "ExpiresOn"
+                  },
+                  "Version": {
+                    "type": "string",
+                    "description": "Version"
+                  },
+                  "Notes": {
+                    "type": "string",
+                    "description": "Notes"
+                  },
+                  "Label": {
+                    "type": "string",
+                    "description": "Label"
+                  },
+                  "IsAzureBackup": {
+                    "type": "boolean",
+                    "description": "IsAzureBackup"
+                  },
+                  "AzureStorageInformation": {
+                    "type": "string",
+                    "description": "AzureStorageInformation"
+                  }
+                }
+              }
             }
           }
         },
@@ -153,14 +199,63 @@
               "value-title": "FriendlyName"
             }
           }
-        ]
+        ],
+        "description": "Retrieves all backups of a Customer Engagement instance."
       },
       "post": {
         "responses": {
           "default": {
             "description": "default",
             "schema": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "OperationId": {
+                  "type": "string",
+                  "description": "OperationId"
+                },
+                "Status": {
+                  "type": "string",
+                  "description": "Status"
+                },
+                "Errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Errors"
+                },
+                "Information": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Information"
+                },
+                "OperationLocation": {
+                  "type": "string",
+                  "description": "OperationLocation"
+                },
+                "ResourceLocation": {
+                  "type": "string",
+                  "description": "ResourceLocation"
+                },
+                "Context": {
+                  "type": "object",
+                  "properties": {
+                    "Items": {
+                      "type": "object",
+                      "properties": {
+                        "InstanceState": {
+                          "type": "string",
+                          "description": "InstanceState"
+                        }
+                      },
+                      "description": "Items"
+                    }
+                  },
+                  "description": "Context"
+                }
+              }
             }
           }
         },
@@ -176,59 +271,21 @@
               "properties": {
                 "InstanceId": {
                   "type": "string",
-                  "description": "Instance",
-                  "title": "",
-                  "x-ms-visibility": "",
-                  "x-ms-dynamic-values": {
-                    "operationId": "Get-Instances",
-                    "value-path": "Id",
-                    "value-title": "FriendlyName"
-                  }
+                  "description": "InstanceId"
                 },
                 "Label": {
                   "type": "string",
                   "description": "Label"
                 },
-                "IsAzureBackup": {
-                  "type": "boolean",
-                  "description": "IsAzureBackup",
-                  "title": "",
-                  "x-ms-visibility": "internal",
-                  "enum": [
-                    "",
-                    "true",
-                    "false"
-                  ],
-                  "default": "false"
-                },
-                "AzureStorageInformation": {
-                  "type": "object",
-                  "properties": {
-                    "ContainerName": {
-                      "type": "string",
-                      "description": "ContainerName",
-                      "title": "",
-                      "x-ms-visibility": "internal"
-                    },
-                    "StorageAccountName": {
-                      "type": "string",
-                      "description": "StorageAccountName",
-                      "title": "",
-                      "x-ms-visibility": "internal"
-                    },
-                    "StorageAccountKey": {
-                      "type": "string",
-                      "description": "StorageAccountKey",
-                      "title": "",
-                      "x-ms-visibility": "internal"
-                    }
-                  },
-                  "description": "AzureStorageInformation"
+                "Notes": {
+                  "type": "string",
+                  "description": "Notes"
                 }
               }
             }
           }
-        ]
+        ],
+        "description": "Backs up a Customer Engagement instance."
       }
     },
     "/Operation/{operationId}": {
@@ -237,7 +294,55 @@
           "default": {
             "description": "default",
             "schema": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "OperationId": {
+                  "type": "string",
+                  "description": "OperationId"
+                },
+                "Status": {
+                  "type": "string",
+                  "description": "Status"
+                },
+                "Errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Errors"
+                },
+                "Information": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Information"
+                },
+                "OperationLocation": {
+                  "type": "string",
+                  "description": "OperationLocation"
+                },
+                "ResourceLocation": {
+                  "type": "string",
+                  "description": "ResourceLocation"
+                },
+                "Context": {
+                  "type": "object",
+                  "properties": {
+                    "Items": {
+                      "type": "object",
+                      "properties": {
+                        "admin.InstanceId": {
+                          "type": "string",
+                          "description": "admin.InstanceId"
+                        }
+                      },
+                      "description": "Items"
+                    }
+                  },
+                  "description": "Context"
+                }
+              }
             }
           }
         },
@@ -251,7 +356,8 @@
             "type": "string",
             "x-ms-summary": "Operation ID"
           }
-        ]
+        ],
+        "description": "Retrieves status of an operation in your Customer Engagement instance."
       }
     },
     "/Instances/{targetInstanceId}/Restore": {
@@ -260,7 +366,55 @@
           "default": {
             "description": "default",
             "schema": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "OperationId": {
+                  "type": "string",
+                  "description": "OperationId"
+                },
+                "Status": {
+                  "type": "string",
+                  "description": "Status"
+                },
+                "Errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Errors"
+                },
+                "Information": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Information"
+                },
+                "OperationLocation": {
+                  "type": "string",
+                  "description": "OperationLocation"
+                },
+                "ResourceLocation": {
+                  "type": "string",
+                  "description": "ResourceLocation"
+                },
+                "Context": {
+                  "type": "object",
+                  "properties": {
+                    "Items": {
+                      "type": "object",
+                      "properties": {
+                        "InstanceState": {
+                          "type": "string",
+                          "description": "InstanceState"
+                        }
+                      },
+                      "description": "Items"
+                    }
+                  },
+                  "description": "Context"
+                }
+              }
             }
           }
         },
@@ -312,6 +466,109 @@
                   "description": "Instance Backup Id",
                   "title": "",
                   "x-ms-visibility": ""
+                }
+              }
+            }
+          }
+        ],
+        "description": "Restores a Customer Engagement instance in your Office 365 tenant."
+      }
+    },
+    "/Instances/{InstanceId}/UpdateAdminMode": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "OperationId": {
+                  "type": "string",
+                  "description": "OperationId"
+                },
+                "Status": {
+                  "type": "string",
+                  "description": "Status"
+                },
+                "Errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Errors"
+                },
+                "Information": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Information"
+                },
+                "OperationLocation": {
+                  "type": "string",
+                  "description": "OperationLocation"
+                },
+                "ResourceLocation": {
+                  "type": "string",
+                  "description": "ResourceLocation"
+                },
+                "Context": {
+                  "type": "object",
+                  "properties": {
+                    "Items": {
+                      "type": "object",
+                      "properties": {
+                        "InstanceState": {
+                          "type": "string",
+                          "description": "InstanceState"
+                        }
+                      },
+                      "description": "Items"
+                    }
+                  },
+                  "description": "Context"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update Instance Admin Mode",
+        "description": "Updates the Admin Mode settings of a Customer Engagement instance.",
+        "operationId": "Update-Instance-Admin-Mode",
+        "parameters": [
+          {
+            "name": "InstanceId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "Get-Instances",
+              "value-path": "Id",
+              "value-title": "FriendlyName"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "AdminMode": {
+                  "type": "boolean",
+                  "description": "AdminMode"
+                },
+                "BackgroundOperationsEnabled": {
+                  "type": "boolean",
+                  "description": "BackgroundOperationsEnabled"
+                },
+                "NotificationText": {
+                  "type": "string",
+                  "description": "NotificationText"
+                },
+                "OverrideUserObjectId": {
+                  "type": "string",
+                  "description": "OverrideUserObjectId"
                 }
               }
             }
