@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "D365 - Online Management",
-    "description": "",
+    "description": "Online Management API lets you manage online instances of Customer Engagement in your Office 365 tenants.",
     "version": "1.0"
   },
   "host": "admin.services.crm6.dynamics.com",
